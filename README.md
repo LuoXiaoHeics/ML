@@ -2,6 +2,10 @@
 - 网页1 : 上传数据,并设置模型种类
 - 网页2 : 进行测试,显示已训练好的模型与未训练好的模型
 
+## 使用的库 
+- python框架 Django
+- 机器学习库 sklearn
+
 ## 目标实现功能:
 拟模型支持 : kNN, Logistic, SVM, NormalBayes, DecisionTree
 
@@ -18,3 +22,4 @@
 
 3. 利用python.pickle保存训练好的模型,并将相关数据保存至数据库
 - ORM: trainingModels ( trainingName (模型名称,外键), modelFile  (模型路径), typeOfModel (模型种类), rate (正确率) )
+
