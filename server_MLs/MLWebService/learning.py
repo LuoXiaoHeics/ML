@@ -1,5 +1,7 @@
 import threading
 import time
+from .models import *
+
 class learnThread(threading.Thread):
     def __init__(self,fileName,typeOfModel):
         threading.Thread.__init__(self) 
