@@ -24,15 +24,8 @@ def upload(request):
         f.close()
         onTraining_m = -1
         print("目前的线程数为：%d" %threading.active_count())
-        if threading.active_count()>10 :
-            onTraining_m = 0
-        else : 
-            onTraining_m = 1
-            lThread = learnThread(trainingData,type_m)
-            lThread.start()
-
-        newTraining = trainingTask(traingName=modelName_m, trainingDataFile = fileName,\
-                typeOfModel = type_m,onTraining = onTraining_m)
+        newTraining = trainingTask(trainingName=modelName_m, trainingDataFile = fileName,\
+                typeOfModel = type_m,onTraining = -1)
         newTraining.save()
         return HttpResponseRedirect(reverse("uploaded"))
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,3 +37,12 @@ def welcome(request):
 
 def uploaded(request):
     return HttpResponse("<h1>file uploaded</h1>")
+
+def startTrainModel(request):
+    if request.method=="POST":
+        waitTraining =trainingTask.objects().filter(onTraining="-1")
+
+def showTasks(request):
+    results = trainingTask.objects.all()
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return  render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/tasks.html'),{"data": results.all()})

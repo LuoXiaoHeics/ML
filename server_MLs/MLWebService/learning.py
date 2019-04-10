@@ -3,10 +3,8 @@ import time
 from .models import *
 
 class learnThread(threading.Thread):
-    def __init__(self,fileName,typeOfModel):
+    def __init__(self):
         threading.Thread.__init__(self) 
-        self.fileName = fileName
-        self.typeOfModel = typeOfModel
 
     def run(self):
         print ("start...%s" %self.fileName)

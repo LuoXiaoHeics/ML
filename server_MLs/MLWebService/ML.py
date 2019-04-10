@@ -9,6 +9,7 @@ from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from MLWebService.models import trainingTask
 
 Types = ["kNN","Logistic","SVM","DTree"]
 
@@ -47,11 +48,12 @@ class XiaoHeiLearn():
     
     def trainModel(self):
         typeId = Types.index(self.modelType)
-        switcher.get(typeId)()
-
+        modelResult = switcher.get(typeId)()
+        #保存结果
+        return modelResult
+        
     def trainkNN(self):
-        X_train,X_test,y_train,y_test = train_test_split(self.data,self.labels,test_size=0.3,random_state=2)
-        param_grid = [
+       param_grid = [
             {
                 'weights':['uniform'],
                 'n_neighbors':[i for i in range(1,20)]
@@ -63,23 +65,23 @@ class XiaoHeiLearn():
             }
         ]
         pipe_lr = Pipeline([('sc', StandardScaler()),
-                    ('pca', PCA(n_components=2)),
+                    ('pca', PCA(n_components=0.9)),
                     ('clf', KNeighborsClassifier(random_state=1))
                     ])
-        grid_search = GridSearchCV(pipe_lr,param_grid,n_jobs=-1,verbose=2)
-        grid_search.fit(X_train,y_train)
+        grid_search = GridSearchCV(pipe_lr,param_grid,scoring='accuracy',cv =5)
+        grid_search.fit(self.data,self.labels)
         return grid_search
 
 
     def trainLogistic(self):
         X_train,X_test,y_train,y_test = train_test_split(self.data,self.labels,test_size=0.3,random_state=2)
-        param_grid = {'penalty':['l1','l2'],'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
+        param_grid = {'penalty':['l1','l2'],'C': para_range}
         pipe_lr = Pipeline([('sc', StandardScaler()),
-                    ('pca', PCA(n_components=2)),
+                    ('pca', PCA(n_components=0.9)),
                     ('clf', LogisticRegression(random_state=1))
                     ])
         grid_search= GridSearchCV(pipe_lr, param_grid,cv=5, scoring='accuracy')   
-        grid_search.fit(X_train,y_train)
+        grid_search.fit(self.data,self.labels)
         return grid_search
 
 
@@ -97,21 +99,22 @@ class XiaoHeiLearn():
             }
         ] 
         pipe_lr = Pipeline([('sc', StandardScaler()),
-                    ('pca', PCA(n_components=2)),
+                    ('pca', PCA(n_components=0.9)),
                     ('clf', SVC()(random_state=1))
                     ])
         grid_search = GridSearchCV(pipe_lr,param_grid,cv=5) #实例化一个GridSearchCV类
-        grid_search.fit(X_train,y_train) #训练，找到最优的参数，同时使用最优的参数实例化一个新的SVC estimator。
+        grid_search.fit(self.data,self.labels)
         return grid_search
 
     def trainDTree(self):
         X_train,X_test,y_train,y_test = train_test_split(self.data,self.labels,test_size=0.3,random_state=2)
         param_grid=[{'max_depth': [i for i in range(1,20)]}]
         pipe_lr = Pipeline([('sc', StandardScaler()),
-                    ('pca', PCA(n_components=2)),
+                    ('pca', PCA(n_components=0.9)),
                     ('clf', DecisionTreeClassifier(random_state=0)
                     ])
-        grid_search = GridSearchCV(pipe_lr,param_grid,scoring='accuracy',cv=2)
-        grid_search.fit(X_train,y_train)
+        grid_search = GridSearchCV(pipe_lr,param_grid,scoring='accuracy',cv=5)
+        grid_search.fit(self.data,self.labels)
         return grid_search
+        
         
