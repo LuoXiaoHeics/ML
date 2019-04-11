@@ -10,8 +10,3 @@ class trainingTask(models.Model):
     onTraining = models.IntegerField(default=-1)
     uploadTime = models.TimeField(auto_now="True")
 
-class trainingModels(models.Model):
-    trainingName = models.CharField(max_length=200,primary_key=True)
-    modelFile = models.CharField(max_length = 200)
-    rate = models.FloatField()
-    typeOfModel = models.CharField(max_length = 100)    

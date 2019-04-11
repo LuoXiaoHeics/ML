@@ -35,11 +35,19 @@
                     {% endif%}
                     <td>{{ result.uploadTime}}</td>
                     {% if result.onTraining == -1  %}
-                    <td><button type="button" class="btn btn-primary" id ="bu_{{result.oid}}">开始训练</button></td>
+                    <td>
+                        <form action="" method="POST">{% csrf_token %}
+                            <input type="submit" value="训练模型" class="btn btn-primary" />
+                        </form>
+                    </td>
                     {% elif result.onTraining == 0%}
                     <td>请等候</td>
                     {% else%}
-                    <td><button type="button" class="btn btn-primary"id ="bu_{{result.oid}}"+result.oid>测试模型</button></td>
+                    <td>
+                        <form action="test{{result.oid}}" method="POST" >{% csrf_token %}
+                            <input type="submit" value="测试模型" class="btn btn-default" />
+                        </form>
+                    </td>
                     {% endif%}
                 </tr>
             {% endfor %}
