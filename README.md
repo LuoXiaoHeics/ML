@@ -15,7 +15,6 @@
  - ORM : trainingTask ( OID (训练任务序号), trainingName (训练名称, 也是模型名称), trainingDataFile (数据文件路径), typeOfModel (模型种类), onTraining (是否在训练,-1未开始训练, 0正在训练, 1已经完成训练), uploadTime (上传时间) )
 
 2. 训练模型并进行交叉检验
-- 如果线程数<n, 则新建线程用于训练模型,并修改训练任务onTraining为0；否则不新建线程
 - 线程训练好一个模型后,修改onTraining为1, 执行3, 之后检查数据库是否有未开始训练的任务, 若有则继续进行新的训练
 - （源数据文件可以删除）
 - 应能自动寻找较好表现的模型参数, 比如使用GridSearch方法等；若不能则需要手动输入相关参数
