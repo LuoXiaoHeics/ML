@@ -30,18 +30,21 @@ def upload(request):
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'))
 
-@csrf_exempt
 def welcome(request):
     return HttpResponse("<h1>Welcome to Machine Learning training platform</h1>")
 
 def uploaded(request):
     return HttpResponse("<h1>file uploaded</h1>")
 
-def startTrainModel(request,oid):
+def startTrainModel(request,id):
     if request.method=="POST":
-        waitTraining =trainingTask.objects().filter(onTraining=-1)
+        waitTraining =trainingTask.objects().filter(oid=id)
         #训练模型
-        return HttpResponse("<h1>Start to Train"+ oid+"</h1>") #返回一个reverse
+        waitTraining.onTraining = 0
+        learnThread(waitTraining.modelName,waitTraining.DataFile,waitTraining.TypeOfModel)
+        waitTraining.save()
+        learnThread.run()
+        return HttpResponseRedirect(reverse("tasks")) #返回一个reverse
     return HttpResponse("error")
 
 def showTasks(request):
@@ -57,6 +60,10 @@ def showTasks(request):
     results = trainingTask.objects.all()
     return  render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/tasks.html'),{"data": results.all()})
 
-def test(request,oid):
-      return HttpResponse("<h1>Welcome to test"+ oid)
+def test(request,id):
+    onTestModel = trainingTask.objects.filter(oid=id)
+
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'))
+      #"<h1>Welcome to test"+ oid
 #render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'))  

@@ -5,8 +5,29 @@
 <title>Machine Learning</title>
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
+    <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>                        
+               </button>
+                    <a class="navbar-brand" href="#">机器学习训练服务</a>
+                  </div>
+                  <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                      <li ><a href="/MLWebService/index">上传训练数据</a></li>
+                      <li><a href="/MLWebService/tasks">管理训练任务</a></li>
+                      <li><a href="#">测试训练模型</a></li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>
     <h2>WebService机器学习模型</h2>
     <table class="table">
         <caption>存储的数据</caption>
@@ -36,19 +57,28 @@
                     <td>{{ result.uploadTime}}</td>
                     {% if result.onTraining == -1  %}
                     <td>
-                        <form action="" method="POST">{% csrf_token %}
-                            <input type="submit" value="训练模型" class="btn btn-primary" />
+                        <form action="" method="POST" style="float:left " >{% csrf_token %}
+                            <input type="submit" value="训练模型" class="btn btn-primary">&nbsp;</input>
+                        </form>
+                        <form action="delete{{result.oid}}" method="POST">{% csrf_token %}
+                            <input type="submit" value="删除模型" class="btn btn-danger" />
                         </form>
                     </td>
                     {% elif result.onTraining == 0%}
                     <td>请等候</td>
                     {% else%}
                     <td>
-                        <form action="test{{result.oid}}" method="POST" >{% csrf_token %}
-                            <input type="submit" value="测试模型" class="btn btn-default" />
+                        <form action="test{{result.oid}}" method="POST"style="float:left " >{% csrf_token %}
+                            <input type="submit" value="测试模型" class="btn btn-default">&nbsp;</input>
+                        </form>
+                        <form action="delete{{result.oid}}" method="POST">{% csrf_token %}
+                            <input type="submit" value="删除模型" class="btn btn-danger" />
                         </form>
                     </td>
                     {% endif%}
+                    
+                        
+                    
                 </tr>
             {% endfor %}
         </tbody>
