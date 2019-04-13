@@ -24,12 +24,11 @@
                         <ul class="nav navbar-nav">
                           <li><a href="/MLWebService/index">上传训练数据</a></li>
                           <li><a href="/MLWebService/tasks">管理训练任务</a></li>
-                          <li><a href="#">测试训练模型</a></li>
                         </ul>
                       </div>
                     </div>
                 </nav>
-    <h1>Use the WebService to train your model</h1><br>
+    <h2>上传训练数据集</h2><br>
     <div class="jumbotron">
         <form method="POST" action="?" role="form" enctype="multipart/form-data">{% csrf_token %}
             <div class="form-group">
@@ -42,7 +41,7 @@
                     <option value="kNN">k Nearest Neighbors</option>
                     <option value="Logistic">Logistic</option>
                     <option value="SVM">Support Vector Machine</option>
-                    <option value="NB">Normal Bayes</option>
+                    <option value="DTree">Decision Tree</option>
                 </select>
             </div>
             <div class="form-group">

@@ -38,22 +38,39 @@ def uploaded(request):
 
 def startTrainModel(request,id):
     if request.method=="POST":
-        waitTraining =trainingTask.objects().filter(oid=id)
+        waitTraining =trainingTask.objects.filter(oid=id)
         #训练模型
-        waitTraining.onTraining = 0
-        learnThread(waitTraining.modelName,waitTraining.DataFile,waitTraining.TypeOfModel)
-        waitTraining.save()
-        learnThread.run()
+        task = waitTraining[0]
+        task.onTraining = 0
+        td = learnThread(task.trainingName,task.trainingDataFile,task.typeOfModel)
+        task.save()
+        td.start()
+        return HttpResponseRedirect(reverse("tasks")) #返回一个reverse
+    return HttpResponse("error")
+
+def deleteModel(request,id):
+    if request.method=="POST":
+        deleteTask =trainingTask.objects.filter(oid=id)
+        #训练模型
+        task = deleteTask[0]
+        PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        modelPath = os.path.join(PROJECT_ROOT,'MLWebService\CompleteModels',task.modelName)
+        if(os.path.exists(modelPath)):
+            os.remove(modelPath)
+        dataPath = deleteModel.trainingDataFile
+        moreTasks =trainingTask.objects.filter(DataFile=dataPath) #检查是否有共用数据文件的任务
+        if len(moreTasks)==1:
+            os.remove(dataPath)
+        task.delete()
         return HttpResponseRedirect(reverse("tasks")) #返回一个reverse
     return HttpResponse("error")
 
 def showTasks(request):
-    print(request.POST)
     onTrainingModel = trainingTask.objects.filter(onTraining=0)
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     dir_list = os.listdir(os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels'))
     for mod in onTrainingModel:
-        if mod.trainingName+".pickle" in dir_list:
+        if mod.trainingName+".model" in dir_list: #检查是否有模型文件
             mod.onTraining=1
             mod.save()
         else:continue
@@ -62,7 +79,6 @@ def showTasks(request):
 
 def test(request,id):
     onTestModel = trainingTask.objects.filter(oid=id)
-
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'))
       #"<h1>Welcome to test"+ oid
