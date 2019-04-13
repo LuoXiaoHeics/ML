@@ -9,7 +9,7 @@
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse ">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,4 +27,26 @@
           </div>
         </div>
     </nav>
+    <div class="container">
+      <div class="col-sm-5">
+        <h3>模型详情</h3>
+        <ul class="list-group">
+            <li class="list-group-item">序号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{MoDel.oid}}</li>
+            <li class="list-group-item">模型名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{MoDel.trainingName}}</li>
+            <li class="list-group-item">模型种类:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{MoDel.typeOfModel}}</li>
+            <li class="list-group-item">模型正确率:&nbsp;&nbsp;&nbsp;{{score}}</li>
+            <li class="list-group-item">完成时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{time}}</li>
+            <li class="list-group-item">模型特征值:&nbsp;&nbsp;&nbsp;{{features}}</li>
+        </ul>
+    </div>
+    <div class="col-sm-8">
+      <form role="form" action="startTest{{MoDel.oid}}" method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="name">输入测试数据</label>
+          <textarea class="form-control" rows="5" name = "testData"></textarea>
+        </div>
+        <input type="submit" value="开始测试" class="btn btn-danger" />
+      </form>
+    </div>
+    
 </body>

@@ -9,6 +9,9 @@ from MLWebService.models import trainingTask
 from MLWebService.learning import learnThread
 import threading
 import os
+from sklearn.externals import joblib
+import time
+import datetime
 # Create your views here.
 @csrf_exempt
 def upload(request):
@@ -29,9 +32,6 @@ def upload(request):
         return HttpResponseRedirect(reverse("uploaded"))
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'))
-
-def welcome(request):
-    return HttpResponse("<h1>Welcome to Machine Learning training platform</h1>")
 
 def uploaded(request):
     return HttpResponse("<h1>file uploaded</h1>")
@@ -77,9 +77,24 @@ def showTasks(request):
     results = trainingTask.objects.all()
     return  render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/tasks.html'),{"data": results.all()})
 
-def test(request,id):
-    onTestModel = trainingTask.objects.filter(oid=id)
+def showTest(request,id):
+    onTestModel = trainingTask.objects.filter(oid=id)[0]
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'))
+    modelFile = os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels',onTestModel.trainingName+'.model')
+    Mod = joblib.load(modelFile)
+    t =os.path.getctime(modelFile)
+    t =time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(t))
+    f = open(onTestModel.trainingDataFile,"r")
+    first_line = f.readline()
+    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'),{"MoDel":onTestModel,\
+        "score":Mod.best_score_,"time":t,"features":first_line})
       #"<h1>Welcome to test"+ oid
 #render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'))  
+
+def startTest(request,id):
+    testData = request.POST.get('testData')
+    onTestModel = trainingTask.objects.filter(oid=id)[0]
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    modelFile = os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels',onTestModel.trainingName+'.model')
+    Mod = joblib.load(modelFile)
+    return HttpResponse("<h1>file uploaded</h1>")
