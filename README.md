@@ -1,13 +1,4 @@
 # 机器学习WebService
-- 网页1 : 上传数据, 并设置模型种类
-https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/upload.JPG
-- 网页2 : 任务页面, 显示未开始训练的，正在训练的，以及训练完成的模型
-https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/tasks.JPG
-- 网页3 : 测试页面, 用已训练好的模型进行分类
-https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/test.JPG
-- 网页4 ： 测试结果页面
-https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/result.JPG
-
 ## 使用的库 
 - python框架 Django
 - 机器学习库 sklearn
@@ -27,4 +18,12 @@ https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/resul
 - （源数据文件可以删除）
 - 应能自动寻找较好表现的模型参数, 比如使用GridSearch方法等；若不能则需要手动输入相关参数
 
-
+## 页面:
+- 网页1 : 上传数据, 并设置模型种类
+![上传页面](https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/upload.JPG)
+- 网页2 : 任务页面, 显示未开始训练的，正在训练的，以及训练完成的模型
+![任务页面](https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/tasks.JPG)
+- 网页3 : 测试页面, 用已训练好的模型进行分类
+![测试页面](https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/test.JPG)
+- 网页4 ： 测试结果页面
+![测试结果页面](https://github.com/LuoXiaoHeics/MLWebService/blob/master/server_MLs/images/result.JPG)
