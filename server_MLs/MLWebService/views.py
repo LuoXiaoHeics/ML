@@ -12,6 +12,7 @@ import os
 from sklearn.externals import joblib
 import time
 import datetime
+import numpy as np
 # Create your views here.
 @csrf_exempt
 def upload(request):
@@ -29,12 +30,9 @@ def upload(request):
         newTraining = trainingTask(trainingName=modelName_m, trainingDataFile = fileName,\
                 typeOfModel = type_m,onTraining = -1)
         newTraining.save()
-        return HttpResponseRedirect(reverse("uploaded"))
+        return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','uploaded.html'))
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'))
-
-def uploaded(request):
-    return HttpResponse("<h1>file uploaded</h1>")
 
 def startTrainModel(request,id):
     if request.method=="POST":
@@ -87,7 +85,7 @@ def showTest(request,id):
     f = open(onTestModel.trainingDataFile,"r")
     first_line = f.readline()
     return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'),{"MoDel":onTestModel,\
-        "score":Mod.best_score_,"time":t,"features":first_line})
+        "score":Mod.steps[2][1].best_score_,"time":t,"features":first_line})
       #"<h1>Welcome to test"+ oid
 #render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'))  
 
@@ -97,4 +95,23 @@ def startTest(request,id):
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     modelFile = os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels',onTestModel.trainingName+'.model')
     Mod = joblib.load(modelFile)
-    return HttpResponse("<h1>file uploaded</h1>")
+    testData = testData.split('\n')
+    data = []
+    for line in testData:
+        line = line.split()
+        dataLine = [float(dat) for dat in line]
+        data.append(dataLine)
+    result = Mod.predict(data)
+    result = np.c_[data,result]
+    print(result)
+    return testResult(request,id,result)
+
+def testResult(request,id,result):
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    onTestModel = trainingTask.objects.filter(oid=id)[0]
+    f = open(onTestModel.trainingDataFile,"r")
+    first_line = f.readline()
+    features = [first_line.split()]
+    result= np.r_[features,result]
+    #return HttpResponse("error")
+    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/results.html'),{"data":result})

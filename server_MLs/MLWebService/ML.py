@@ -65,7 +65,7 @@ class XiaoHeiLearn():
         ])
         pipe_lr.fit(X_train,Y_train)
         score = pipe_lr.score(X_test,Y_test)
-        return pipe_lr,score,gridsearch
+        return pipe_lr,score
 
 
     def trainLogistic(self):
@@ -88,7 +88,7 @@ class XiaoHeiLearn():
             ])
         pipe_lr.fit(X_train,Y_train)
         score = pipe_lr.score(X_test,Y_test)
-        return pipe_lr,score,gridsearch
+        return pipe_lr,score
 
 
     def trainSVM(self):
@@ -111,7 +111,7 @@ class XiaoHeiLearn():
             ])
         pipe_lr.fit(X_train,Y_train)
         score = pipe_lr.score(X_test,Y_test)
-        return pipe_lr,score,gridsearch
+        return pipe_lr,score
 
     def trainDTree(self):
         X_train,X_test,Y_train,Y_test = train_test_split(self.data,self.labels,test_size=0.3,random_state=2)
@@ -124,4 +124,4 @@ class XiaoHeiLearn():
             ])
         pipe_lr.fit(X_train,Y_train)
         score = pipe_lr.score(X_test,Y_test)
-        return pipe_lr,score,gridsearch
+        return pipe_lr,score

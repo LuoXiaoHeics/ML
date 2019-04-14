@@ -8,5 +8,4 @@ class trainingTask(models.Model):
     trainingDataFile = models.CharField(max_length = 200)
     typeOfModel = models.CharField(max_length = 100)
     onTraining = models.IntegerField(default=-1)
-    uploadTime = models.TimeField(auto_now="True")
-
+    uploadTime = models.DateTimeField(auto_now="True")

@@ -14,11 +14,11 @@ class learnThread(threading.Thread):
         print("开始训练%s" %self.modelName)
         Learns = XiaoHeiLearn(self.TypeOfModel,self.DataFile,self.modelName)
         Learns.dealWithData()
-        model,score,gridSearch = Learns.trainModel()
+        model,score = Learns.trainModel()
         #记录文件
         PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         modelPath = os.path.join(PROJECT_ROOT,'MLWebService\CompleteModels',self.modelName+'.model')
-        joblib.dump(gridSearch,modelPath)
+        joblib.dump(model,modelPath)
         print("训练完成%s"%self.modelName)
 
 #set-executionpolicy remotesigned
