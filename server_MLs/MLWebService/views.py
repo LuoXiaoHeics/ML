@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.forms import fields
 from django import forms
+from server_MLs.settings import logging
 from MLWebService.models import trainingTask
 from MLWebService.learning import learnThread
 import threading
@@ -13,6 +14,7 @@ from sklearn.externals import joblib
 import time
 import datetime
 import numpy as np
+
 # Create your views here.
 @csrf_exempt
 def upload(request):
@@ -86,8 +88,6 @@ def showTest(request,id):
     first_line = f.readline()
     return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'),{"MoDel":onTestModel,\
         "score":Mod.steps[2][1].best_score_,"time":t,"features":first_line})
-      #"<h1>Welcome to test"+ oid
-#render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/test.html'))  
 
 def startTest(request,id):
     testData = request.POST.get('testData')
