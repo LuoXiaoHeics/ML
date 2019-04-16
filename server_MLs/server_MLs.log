@@ -1,0 +1,259 @@
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Apr 16 00:13:47 2019] ***
+compiled with version: 7.3.0 on 15 April 2019 13:50:24
+os: Linux-4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019
+nodename: iZ2zehgznqeh3dl7amkxvqZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root
+detected binary path: /home/vcmt/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/ML/server_MLs
+your processes number limit is 3719
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/ML/server_MLs/server_MLs.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55c6fb797cf0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437424 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55c6fb797cf0 pid: 29174 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 29174)
+spawned uWSGI worker 1 (pid: 29176, cores: 1)
+spawned uWSGI worker 2 (pid: 29177, cores: 1)
+spawned uWSGI worker 3 (pid: 29178, cores: 1)
+spawned uWSGI worker 4 (pid: 29179, cores: 1)
+spawned uWSGI worker 5 (pid: 29180, cores: 1)
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Apr 16 00:14:35 2019] ***
+compiled with version: 7.3.0 on 15 April 2019 13:50:24
+os: Linux-4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019
+nodename: iZ2zehgznqeh3dl7amkxvqZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root
+detected binary path: /home/vcmt/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/ML/server_MLs
+your processes number limit is 3719
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/ML/server_MLs/server_MLs.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55c7796d6cf0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437424 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55c7796d6cf0 pid: 29183 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 29183)
+spawned uWSGI worker 1 (pid: 29185, cores: 1)
+spawned uWSGI worker 2 (pid: 29186, cores: 1)
+spawned uWSGI worker 3 (pid: 29187, cores: 1)
+spawned uWSGI worker 4 (pid: 29188, cores: 1)
+spawned uWSGI worker 5 (pid: 29189, cores: 1)
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Apr 16 00:15:37 2019] ***
+compiled with version: 7.3.0 on 15 April 2019 13:50:24
+os: Linux-4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019
+nodename: iZ2zehgznqeh3dl7amkxvqZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root
+detected binary path: /home/vcmt/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/ML/server_MLs
+your processes number limit is 3719
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/ML/server_MLs/server_MLs.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5566ea210cf0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437424 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5566ea210cf0 pid: 29196 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 29196)
+spawned uWSGI worker 1 (pid: 29198, cores: 1)
+spawned uWSGI worker 2 (pid: 29199, cores: 1)
+spawned uWSGI worker 3 (pid: 29200, cores: 1)
+spawned uWSGI worker 4 (pid: 29201, cores: 1)
+spawned uWSGI worker 5 (pid: 29202, cores: 1)
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Apr 16 01:31:57 2019] ***
+compiled with version: 7.3.0 on 15 April 2019 13:50:24
+os: Linux-4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019
+nodename: iZ2zehgznqeh3dl7amkxvqZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ML/server_MLs
+detected binary path: /home/vcmt/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/ML/server_MLs
+your processes number limit is 3719
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/ML/server_MLs/server_MLs.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x556c42b50f20
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218712 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+failed to open python file server_MLs.wsgi:application
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 30239)
+spawned uWSGI worker 1 (pid: 30240, cores: 1)
+spawned uWSGI worker 2 (pid: 30241, cores: 1)
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Apr 16 08:12:37 2019] ***
+compiled with version: 7.3.0 on 15 April 2019 13:50:24
+os: Linux-4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019
+nodename: iZ2zehgznqeh3dl7amkxvqZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root
+detected binary path: /home/vcmt/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/ML/server_MLs
+your processes number limit is 3719
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/ML/server_MLs/server_MLs.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5579d5c61fd0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218712 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+failed to open python file server_MLs.wsgi:application
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 30815)
+spawned uWSGI worker 1 (pid: 30816, cores: 1)
+spawned uWSGI worker 2 (pid: 30817, cores: 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 30817|app: -1|req: -1/1] 218.197.153.57 () {40 vars in 784 bytes} [Tue Apr 16 08:13:50 2019] GET /MLWebService/tasks => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Apr 16 09:47:47 2019] ***
+compiled with version: 7.3.0 on 15 April 2019 13:50:24
+os: Linux-4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019
+nodename: iZ2zehgznqeh3dl7amkxvqZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ML/server_MLs
+detected binary path: /home/vcmt/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/ML/server_MLs
+your processes number limit is 3719
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/ML/server_MLs/server_MLs.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+PEP 405 virtualenv detected: /home/vcmt
+Set PythonHome to /home/vcmt
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55e283de1050
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218712 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55e283de1050 pid: 31047 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 31047)
+spawned uWSGI worker 1 (pid: 31049, cores: 1)
+spawned uWSGI worker 2 (pid: 31050, cores: 1)
+unable to load configuration from from multiprocessing.semaphore_tracker import main;main(6)
+[pid: 31050|app: 0|req: 1/1] 218.197.153.57 () {42 vars in 813 bytes} [Tue Apr 16 01:48:04 2019] GET /MLWebService/tasks => generated 7948 bytes in 659 msecs (HTTP/1.1 200) 5 headers in 292 bytes (2 switches on core 0)
+unable to load configuration from from multiprocessing.semaphore_tracker import main;main(7)
+[pid: 31049|app: 0|req: 1/2] 218.197.153.57 () {42 vars in 778 bytes} [Tue Apr 16 01:48:06 2019] GET /favicon.ico => generated 85 bytes in 638 msecs (HTTP/1.1 404) 3 headers in 100 bytes (2 switches on core 0)
+[pid: 31050|app: 0|req: 2/3] 218.197.153.57 () {42 vars in 789 bytes} [Tue Apr 16 01:48:28 2019] GET /admin/ => generated 0 bytes in 14 msecs (HTTP/1.1 302) 7 headers in 265 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 2/4] 218.197.153.57 () {42 vars in 826 bytes} [Tue Apr 16 01:48:28 2019] GET /admin/login/?next=/admin/ => generated 1819 bytes in 31 msecs (HTTP/1.1 200) 7 headers in 395 bytes (1 switches on core 0)
+[pid: 31050|app: 0|req: 3/5] 218.197.153.57 () {52 vars in 1081 bytes} [Tue Apr 16 01:48:34 2019] POST /admin/login/?next=/admin/ => generated 0 bytes in 121 msecs (HTTP/1.1 302) 9 headers in 559 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 3/6] 218.197.153.57 () {46 vars in 931 bytes} [Tue Apr 16 01:48:34 2019] GET /admin/ => generated 3790 bytes in 18 msecs (HTTP/1.1 200) 6 headers in 227 bytes (1 switches on core 0)
+[pid: 31050|app: 0|req: 4/7] 218.197.153.57 () {44 vars in 933 bytes} [Tue Apr 16 01:48:39 2019] GET /admin/MLWebService/trainingtask/ => generated 5701 bytes in 147 msecs (HTTP/1.1 200) 7 headers in 395 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 4/8] 218.197.153.57 () {42 vars in 804 bytes} [Tue Apr 16 01:48:39 2019] GET /admin/jsi18n/ => generated 3185 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 132 bytes (1 switches on core 0)
+[pid: 31050|app: 0|req: 5/9] 218.197.153.57 () {52 vars in 1147 bytes} [Tue Apr 16 01:48:46 2019] POST /admin/MLWebService/trainingtask/ => generated 4294 bytes in 17 msecs (HTTP/1.1 200) 7 headers in 395 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 5/10] 218.197.153.57 () {52 vars in 1147 bytes} [Tue Apr 16 01:48:48 2019] POST /admin/MLWebService/trainingtask/ => generated 0 bytes in 49 msecs (HTTP/1.1 302) 8 headers in 450 bytes (2 switches on core 0)
+[pid: 31050|app: 0|req: 6/11] 218.197.153.57 () {46 vars in 1123 bytes} [Tue Apr 16 01:48:48 2019] GET /admin/MLWebService/trainingtask/ => generated 3386 bytes in 12 msecs (HTTP/1.1 200) 8 headers in 479 bytes (1 switches on core 0)
+[pid: 31049|app: 0|req: 6/12] 218.197.153.57 () {42 vars in 804 bytes} [Tue Apr 16 01:48:48 2019] GET /admin/jsi18n/ => generated 3185 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 132 bytes (1 switches on core 0)
+[pid: 31050|app: 0|req: 7/13] 218.197.153.57 () {44 vars in 933 bytes} [Tue Apr 16 01:50:50 2019] GET /admin/MLWebService/trainingtask/ => generated 3256 bytes in 11 msecs (HTTP/1.1 200) 7 headers in 395 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 7/14] 218.197.153.57 () {42 vars in 831 bytes} [Tue Apr 16 01:50:58 2019] GET /index => generated 79 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 8/15] 218.197.153.57 () {42 vars in 859 bytes} [Tue Apr 16 01:51:14 2019] GET /ML_WebService/index => generated 93 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 9/16] 218.197.153.57 () {42 vars in 857 bytes} [Tue Apr 16 01:51:23 2019] GET /MLWebService/index => generated 2475 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 292 bytes (2 switches on core 0)
+[pid: 31050|app: 0|req: 8/17] 218.197.153.57 () {44 vars in 881 bytes} [Tue Apr 16 01:51:50 2019] GET /MLWebService/tasks => generated 1659 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 110 bytes (2 switches on core 0)
+[pid: 31049|app: 0|req: 10/18] 218.197.153.57 () {42 vars in 822 bytes} [Tue Apr 16 01:51:52 2019] GET /favicon.ico => generated 85 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (2 switches on core 0)
