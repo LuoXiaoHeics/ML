@@ -7,6 +7,7 @@ from django.forms import fields
 from django import forms
 from server_MLs.settings import logging
 from MLWebService.models import trainingTask
+from MLWebService.models import MLUser
 from MLWebService.learning import learnThread
 import threading
 import os
@@ -14,15 +15,55 @@ from sklearn.externals import joblib
 import time
 import datetime
 import numpy as np
+from .forms import *
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Create your views here.
-@csrf_exempt
+def login(request):
+    if request.method == "POST":
+        login_form = UserForm(request.POST)
+        message = "请检查填写的内容！"
+        if login_form.is_valid():
+            username = login_form.cleaned_data['username']
+            password = login_form.cleaned_data['password']
+            try:
+                user = MLUser.objects.filter(username=username)
+                if user[0].password == password:             
+                    request.session['is_login'] = True
+                    request.session['user_name'] = username
+                    return HttpResponseRedirect(reverse("index"))
+                else:
+                    message = "密码不正确！"
+            except:
+                message = "用户不存在！"
+        return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','login.html'), locals())
+    login_form = UserForm()
+    return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','login.html'), locals())
+
+def index(request):
+    if  not request.session.get('is_login', None):
+        havelogin = False
+    else : havelogin = True
+     #if request.method == "POST":
+     #   username = request.POST.get('username')
+     #   password = request.POST.get('password')
+    print (havelogin)
+    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'),locals())
+
+def logout(request):
+    request.session.flush()
+    return HttpResponseRedirect(reverse("index"))
+
+def register(request):
+    pass
+    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'))
+
 def upload(request):
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if request.method == 'POST':
         trainingData = request.FILES.get('trainingData')
         modelName_m = request.POST.get('modelName')
         type_m = request.POST.get('modelSelection')
-        PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         fileName = os.path.join(PROJECT_ROOT,'MLWebService\data',trainingData.name)
         f = open(fileName,'wb')
         for line in trainingData.readlines():
@@ -33,8 +74,10 @@ def upload(request):
                 typeOfModel = type_m,onTraining = -1)
         newTraining.save()
         return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','uploaded.html'))
-    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'))
+    if  not request.session.get('is_login', None):
+        login_form = UserForm()
+        return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','login.html'), locals())
+    else: return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','upload.html'))
 
 def startTrainModel(request,id):
     if request.method=="POST":
@@ -49,11 +92,11 @@ def startTrainModel(request,id):
     return HttpResponse("error")
 
 def deleteModel(request,id):
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if request.method=="POST":
         deleteTask =trainingTask.objects.filter(oid=id)
         #训练模型
         task = deleteTask[0]
-        PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         modelPath = os.path.join(PROJECT_ROOT,'MLWebService\CompleteModels',task.modelName)
         if(os.path.exists(modelPath)):
             os.remove(modelPath)
@@ -66,20 +109,23 @@ def deleteModel(request,id):
     return HttpResponse("error")
 
 def showTasks(request):
-    onTrainingModel = trainingTask.objects.filter(onTraining=0)
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if  not request.session.get('is_login', None):
+        login_form = UserForm()
+        return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','login.html'), locals())
+    onTrainingModel = trainingTask.objects.filter(onTraining=0)
     dir_list = os.listdir(os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels'))
     for mod in onTrainingModel:
         if mod.trainingName+".model" in dir_list: #检查是否有模型文件
             mod.onTraining=1
             mod.save()
         else:continue
-    results = trainingTask.objects.all()
+    results = trainingTask.objects.filter(username=request.session.get('user_name'))
     return  render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates/tasks.html'),{"data": results.all()})
 
 def showTest(request,id):
-    onTestModel = trainingTask.objects.filter(oid=id)[0]
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    onTestModel = trainingTask.objects.filter(oid=id)[0]
     modelFile = os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels',onTestModel.trainingName+'.model')
     Mod = joblib.load(modelFile)
     t =os.path.getctime(modelFile)
@@ -92,7 +138,6 @@ def showTest(request,id):
 def startTest(request,id):
     testData = request.POST.get('testData')
     onTestModel = trainingTask.objects.filter(oid=id)[0]
-    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     modelFile = os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels',onTestModel.trainingName+'.model')
     Mod = joblib.load(modelFile)
     testData = testData.split('\n')
@@ -107,7 +152,6 @@ def startTest(request,id):
     return testResult(request,id,result)
 
 def testResult(request,id,result):
-    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     onTestModel = trainingTask.objects.filter(oid=id)[0]
     f = open(onTestModel.trainingDataFile,"r")
     first_line = f.readline()

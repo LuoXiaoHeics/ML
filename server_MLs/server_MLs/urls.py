@@ -19,6 +19,6 @@ from django.conf.urls import url
 from django.conf.urls import include
 
 urlpatterns = [
-    url(r'MLWebService/',include('MLWebService.urls')),
     path('admin/', admin.site.urls),
+    url(r'MLWebService/',include('MLWebService.urls')),
 ]

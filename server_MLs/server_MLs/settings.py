@@ -22,9 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nr3huht3y3%oj&9sqzjl2=k4h-x2&fu#3@7dbk!^2c30@+&7&k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['39.97.116.172']
+#ALLOWED_HOSTS = ['39.97.116.172']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -53,7 +54,7 @@ ROOT_URLCONF = 'server_MLs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'MLWebService', 'templates').replace('\\','/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,6 +121,12 @@ STATIC_ROOT =os.path.join(BASE_DIR,'static')
 
 STATIC_URL = '/static/'
 
+# 部署时删除
+STATICFILES_DIRS = [
+    ("css", os.path.join(STATIC_ROOT, 'css')),
+#    ("img", os.path.join(STATIC_ROOT, 'img')),
+    ("js", os.path.join(STATIC_ROOT, 'js')),
+]
 
 STATICFILES_FINDERS = (
 	'django.contrib.staticfiles.finders.FileSystemFinder',

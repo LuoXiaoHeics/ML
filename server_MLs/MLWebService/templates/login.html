@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+          <form class='form-login' action="login" method="post">{% csrf_token %}
+              {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+              {% endif %}
+            
+              <h2 class="text-center">欢迎登录</h2>
+              <div class="form-group">
+                  {{ login_form.username.label_tag }}
+                  {{ login_form.username}}
+                
+              </div>
+              <div class="form-group">               
+                  {{ login_form.password.label_tag }}
+                  {{ login_form.password }}
+              </div>
+              <button type="reset" class="btn btn-default pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right">提交</button>
+          </form>
+          <!--<div class="col-md-4 col-md-offset-4"> <p style="color:red;">{{ error_msg }}</p></div>-->
+         
+        </div>
+       
+    </div> <!-- /container -->
+{% endblock %}

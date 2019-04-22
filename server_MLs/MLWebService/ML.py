@@ -43,6 +43,10 @@ class XiaoHeiLearn():
             index+=1
         self.data = data
         self.labels = classLabels
+
+    def dataWashing(self):
+        pass
+        return 0
     
     def trainModel(self):
         modelResult = self.trainFunction[self.modelType]()

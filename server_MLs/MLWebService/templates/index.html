@@ -1,54 +1,87 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8">
-<title>Machine Learning</title>
-{% load staticfiles %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-</head>
+{% extends 'base.html' %}
+{% block login %}
+{% if havelogin %}
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="/MLWebService/logout">登出</a></li>
+    </ul>
+{% else %}
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="/MLWebService/login">登录</a></li>
+    <li><a href="/MLWebService/register">注册</a></li>
+</ul>
+{% endif %}
+{% endblock%}
 
-<body>
-        <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                      <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                         <span class="icon-bar"></span>                        
-                   </button>
-                        <a class="navbar-brand" href="#">机器学习训练服务</a>
-                      </div>
-                      <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                          <li><a href="/MLWebService/index">上传训练数据</a></li>
-                          <li><a href="/MLWebService/tasks">管理训练任务</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                </nav>
-    <h2>上传训练数据集</h2><br>
-    <div class="jumbotron">
-        <form method="POST" action="?" role="form" enctype="multipart/form-data">{% csrf_token %}
-            <div class="form-group">
-                <label for="name">模型名称</label>
-                <input type="text" name="modelName"/>
-            </div>
-            <div class="form-group">
-                <label for="name">模型种类</label>
-                <select name="modelSelection">
-                    <option value="kNN">k Nearest Neighbors</option>
-                    <option value="Logistic">Logistic</option>
-                    <option value="SVM">Support Vector Machine</option>
-                    <option value="DTree">Decision Tree</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="name">输入训练数据</label>
-                <input type="file" name="trainingData"/>
-            </div>            
-            <input type="submit" value="提交数据" class="btn btn-primary" />
-        </form>
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+    <!-- End of mathjax configuration --></head>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#26426;&#22120;&#23398;&#20064;WebService">&#26426;&#22120;&#23398;&#20064;WebService</h2><ul>
+<li>python框架 Django</li>
+<li>机器学习库 sklearn</li>
+</ul>
+<h2 id="&#30446;&#26631;&#23454;&#29616;&#21151;&#33021;:">&#30446;&#26631;&#23454;&#29616;&#21151;&#33021;</h2><p>拟支持模型 : kNN, Logistic, SVM, DecisionTree</p>
+<ol>
+<li><p>上传文件,并保存至服务器</p>
+<ul>
+<li>文件格式要求:第1行为特征名与种类名,第2-n行,前m列为特征值,最后一列为种类。数据间以 ' '或 '\t' 隔开,（之后可以提供多文件类型支持）</li>
+<li>文件上传后,将相关属性存储到数据库中</li>
+<li>ORM : trainingTask ( OID (训练任务序号), trainingName (训练名称, 也是模型名称), trainingDataFile (数据文件路径), typeOfModel (模型种类), onTraining (是否在训练,-1未开始训练, 0正在训练, 1已经完成训练), uploadTime (上传时间) )</li>
+</ul>
+</li>
+<li><p>数据处理</p>
+</li>
+<ul>
+<li>对字符串数据</li>
+<li>对缺失数据</li>
+<li>（对数据的归一化位于下面pipeline中）</li>
+</ul>
+<li>训练模型保存模型文件</li>
+<ul>
+<li>Pipeline: 管道机制，过程包括归一化和PCA</li>
+<li>GridsearchCV: 用于寻找表现良好的参数组合，评价标准为交叉验证的正确率</li>
+<li>再次访问任务页面时,检查"正在训练"任务是否在模型文件夹中存在对应的模型文件, 若存在则更新数据库，将其修改为训练完成（暂时以这种方式来处理）</li>
+</ul>
+<li><p>测试模型</p></li>
+<ul>
+<li>测试主要是在页面提交数据，之后返回测试结果</li>
+<li>测试结果可以下载到本地</li>
+</ul>
+</ol>
+
+</div>
+</div>
+</div>
     </div>
-</body>
+  </div>
+  {% endblock %}

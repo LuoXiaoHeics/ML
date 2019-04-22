@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{%block login%}
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/MLWebService/logout">登出</a></li>
+</ul>
+{%endblock%}
+{% block content %}                
+    <h2>上传训练数据集</h2><br>
+    <div class="jumbotron">
+        <form method="POST" action="?" role="form" enctype="multipart/form-data">{% csrf_token %}
+            <div class="form-group">
+                <label for="name">模型名称</label>
+                <input type="text" name="modelName"/>
+            </div>
+            <div class="form-group">
+                <label for="name">模型种类</label>
+                <select name="modelSelection">
+                    <option value="kNN">k Nearest Neighbors</option>
+                    <option value="Logistic">Logistic</option>
+                    <option value="SVM">Support Vector Machine</option>
+                    <option value="DTree">Decision Tree</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="name">输入训练数据</label>
+                <input type="file" name="trainingData"/>
+            </div>            
+            <input type="submit" value="提交数据" class="btn btn-primary" />
+        </form>
+    </div>
+    {% endblock %}
