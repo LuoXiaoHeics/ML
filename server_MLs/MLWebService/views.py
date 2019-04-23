@@ -80,6 +80,8 @@ def upload(request):
         trainingData = request.FILES.get('trainingData')
         modelName_m = request.POST.get('modelName')
         type_m = request.POST.get('modelSelection')
+        username = request.session['user_name']
+        #添加User
         fileName = os.path.join(PROJECT_ROOT,'MLWebService\data',trainingData.name)
         f = open(fileName,'wb')
         for line in trainingData.readlines():
@@ -87,9 +89,9 @@ def upload(request):
         f.close()
         onTraining_m = -1
         newTraining = trainingTask(trainingName=modelName_m, trainingDataFile = fileName,\
-                typeOfModel = type_m,onTraining = -1)
+                typeOfModel = type_m,onTraining = -1,username=username)
         newTraining.save()
-        return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','uploaded.html'))
+        return HttpResponseRedirect(reverse("tasks"))
     if  not request.session.get('is_login', None):
         login_form = UserForm()
         return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','login.html'), locals())
