@@ -82,7 +82,7 @@ def upload(request):
         type_m = request.POST.get('modelSelection')
         username = request.session['user_name']
         #添加User
-        fileName = os.path.join(PROJECT_ROOT,'MLWebService\data',trainingData.name)
+        fileName = os.path.join(PROJECT_ROOT,'MLWebService/data',trainingData.name)
         f = open(fileName,'wb')
         for line in trainingData.readlines():
             f.write(line)
