@@ -8,8 +8,8 @@ urlpatterns = [
     url(r'^task(\d+)',views.startTrainModel,name="train"),
     url(r'^test(\d+)',views.showTest,name="tests"),
     url(r'^startTest(\d+)',views.startTest,name="test"),
-    url(r'^login',views.login),
-    url(r'^register', views.logout),
+    url(r'^login',views.login,name="login"),
+    url(r'^register', views.register),
     url(r'^logout', views.logout),
     url(r'',views.index, name = 'index'),
 ]

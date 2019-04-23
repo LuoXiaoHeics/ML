@@ -55,8 +55,24 @@ def logout(request):
     return HttpResponseRedirect(reverse("index"))
 
 def register(request):
-    pass
-    return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'))
+    if request.method == "POST":
+        message = "请检查填写的内容！"
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        anwser = request.POST.get('question')
+        if (username!="") and (password!="") and (anwser =="LuoXiaoHei"):
+            user = MLUser.objects.filter(username=username)
+            if len(user) >0:             
+                message = "用户名已存在"
+            else:
+                newUser = MLUser(username=username,password=password,email=email)
+                newUser.save()
+                return HttpResponseRedirect(reverse("login"))
+        else: message = "信息错误"
+        return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','register.html'), locals())
+    return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','register.html'))
+    
 
 def upload(request):
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

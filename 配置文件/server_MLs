@@ -1,0 +1,20 @@
+server {
+    
+
+listen 8000;
+    
+server_name 39.97.116.172;
+
+  
+location /static/ {
+    root /home/ML/server_MLs/;
+    }
+
+    
+location / {
+        
+include         uwsgi_params;
+ 
+uwsgi_pass      unix:/home/ML/server_MLs/server_MLs.sock;    
+          }
+}
