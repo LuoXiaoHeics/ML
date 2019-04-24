@@ -44,10 +44,6 @@ def index(request):
     if  not request.session.get('is_login', None):
         havelogin = False
     else : havelogin = True
-     #if request.method == "POST":
-     #   username = request.POST.get('username')
-     #   password = request.POST.get('password')
-    print (havelogin)
     return render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','index.html'),locals())
 
 def logout(request):
@@ -109,6 +105,29 @@ def startTrainModel(request,id):
         return HttpResponseRedirect(reverse("tasks")) #返回一个reverse
     return HttpResponse("error")
 
+def dataFrame(request,id):
+    if request.method=="POST":
+        onTestModel =trainingTask.objects.filter(oid=id)[0]
+        f = open(onTestModel.trainingDataFile,"r")
+        lines = f.readlines()
+        minLe = min(len(lines),10)
+        lines = lines[0:minLe+1]
+        data = []
+        dataName = onTestModel.trainingName
+        i = 1
+        line0 = lines[0]
+        line0 = line0.strip().split()
+        line0.insert(0,'序号(不含)')
+        data.append(line0)
+        del(lines[0])
+        for line in lines:
+            line = line.strip().split()
+            line.insert(0,i)
+            data.append(line)
+            i= i+1
+        return  render(request,os.path.join(PROJECT_ROOT,'MLWebService/templates','dataframe.html'),locals())
+    return HttpResponse("error")
+
 def deleteModel(request,id):
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if request.method=="POST":
@@ -118,10 +137,10 @@ def deleteModel(request,id):
         modelPath = os.path.join(PROJECT_ROOT,'MLWebService\CompleteModels',task.modelName)
         if(os.path.exists(modelPath)):
             os.remove(modelPath)
-        dataPath = deleteModel.trainingDataFile
-        moreTasks =trainingTask.objects.filter(DataFile=dataPath) #检查是否有共用数据文件的任务
-        if len(moreTasks)==1:
-            os.remove(dataPath)
+        #dataPath = deleteModel.trainingDataFile
+        #moreTasks =trainingTask.objects.filter(DataFile=dataPath) #检查是否有共用数据文件的任务
+        #if len(moreTasks)==1:
+        #    os.remove(dataPath)
         task.delete()
         return HttpResponseRedirect(reverse("tasks")) #返回一个reverse
     return HttpResponse("error")

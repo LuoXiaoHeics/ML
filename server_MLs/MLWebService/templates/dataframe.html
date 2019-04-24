@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block login%}
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/MLWebService/logout">登出</a></li>
+</ul>
+{%endblock%}
+
+{% block content %}
+    <h2>机器学习数据格式示例)</h2>
+        <table class="table" id='oTabel'>
+            <caption>{{ dataName }}</caption>
+            <br>
+            <tbody>
+                {% for result in data %}
+                    <tr>
+                        {%for fea in result%}
+                        <td>{{fea}}</td>
+                        {% endfor%}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="btn btn-info " style="margin-left:90%" onclick="location.href='/MLWebService/tasks'">返回</button>
+{% endblock %}
