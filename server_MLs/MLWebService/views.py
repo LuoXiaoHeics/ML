@@ -65,7 +65,7 @@ def register(request):
             else:
                 newUser = MLUser(username=username,password=password,email=email)
                 newUser.save()
-                fileName = os.path.join(PROJECT_ROOT,'MLWebService/data/demo_'+username)
+                fileName = os.path.join(PROJECT_ROOT,'MLWebService/data/date')
                 onTraining_m = -1
                 newTraining = trainingTask(trainingName='demo_'+username, trainingDataFile = fileName,\
                 typeOfModel = 'kNN',onTraining = -1,username=username)
