@@ -17,7 +17,7 @@ class learnThread(threading.Thread):
         model,score = Learns.trainModel()
         #记录文件
         PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        modelPath = os.path.join(PROJECT_ROOT,'MLWebService\CompleteModels',self.modelName+'.model')
+        modelPath = os.path.join(PROJECT_ROOT,'MLWebService/CompleteModels',self.modelName+'.model')
         joblib.dump(model,modelPath)
         print("训练完成%s"%self.modelName)
 
