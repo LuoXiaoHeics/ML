@@ -51,6 +51,7 @@ def logout(request):
     return HttpResponseRedirect(reverse("index"))
 
 def register(request):
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if request.method == "POST":
         message = "请检查填写的内容！"
         username = request.POST.get('username')
@@ -64,6 +65,11 @@ def register(request):
             else:
                 newUser = MLUser(username=username,password=password,email=email)
                 newUser.save()
+                fileName = os.path.join(PROJECT_ROOT,'MLWebService/data/demo_'+username)
+                onTraining_m = -1
+                newTraining = trainingTask(trainingName='demo_'+username, trainingDataFile = fileName,\
+                typeOfModel = 'kNN',onTraining = -1,username=username)
+                newTraining.save()
                 return HttpResponseRedirect(reverse("login"))
         else: message = "信息错误"
         return render(request, os.path.join(PROJECT_ROOT,'MLWebService/templates','register.html'), locals())
